@@ -1,85 +1,70 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/*
-16 2
-1 1 0 0 1 0 0 1 1 0 0 0 0 0 1 1
-
-1 < <= n/2+n%2 => i
-n/2 + n%2 < < n => n - i + 1
-
-Arr: 1, 2, 5, 8, 16 - 9 + 1, 16 - 15 + 1, 16- 16 + 1
-=> 1, 2, 5, 8, 7, 2, 1
-
-*/
-
 void solve()
 {
-    int n, s;
-    cin >> n >> s;
+    int n, sum;
+    cin >> n >> sum;
 
-    vector<int> v(n);
-    int sum = 0;
+    vector<int> ind1;
+    int total = 0;
 
     for (int i = 0; i < n; i++)
     {
-        cin >> v[i];
-        sum += v[i];
-    }
+        int x;
+        cin >> x;
 
-    vector<int> ind_of_1;
-    for (int i = 1; i <= n; i++)
-    {
-        if (i <= n / 2 + n % 2 && v[i - 1] == 1)
+        if (x)
         {
-            ind_of_1.push_back(i);
-        }
-
-        else if (i > n / 2 + n % 2 && v[i - 1] == 1)
-        {
-            ind_of_1.push_back(n - i + 1);
+            total += x;
+            ind1.push_back(x);
         }
     }
 
-    int sz = ind_of_1.size();
-    int low = 0, high = sz - 1;
-    int no_of_op = 0;
-    int lowS = 0, highS = 0;
-
-    while (true)
+    if (total < sum)
     {
-        if (sum == s)
-        {
-            break;
-        }
-        if (high <= low)
-        {
-            no_of_op = -1;
-            break;
-        }
+        cout << -1;
+        return;
+    }
 
-        if (ind_of_1[high] >= ind_of_1[low])
+    if (total == sum)
+    {
+        cout << 0;
+        return;
+    }
+
+    int l = 0, r = n - 1;
+    int low = 0, high = ind1.size() - 1;
+    int diff = total - sum;
+
+    int tOper = 0;
+    while (diff != 0 && low != high)
+    {
+        int oper = 0;
+        int x1 = ind1[low] - l;
+        int x2 = ind1[high] - r;
+
+        if (min(x1, x2) == x1)
         {
-            sum--;
-            no_of_op += ind_of_1[low];
-            lowS += ind_of_1[low];
+            oper += ind1[low] - l + 1;
             low++;
-            ind_of_1[low] -= lowS;
-            continue;
+            tOper += oper;
+            l += x1;
+            diff--;
         }
 
-        if (ind_of_1[high] < ind_of_1[low])
+        else if (min(x1, x2) == x2)
         {
-            sum--;
-            no_of_op += ind_of_1[high];
-            highS += ind_of_1[high];
+            oper += ind1[high] - r + 1;
             high--;
-            ind_of_1[high] -= highS;
-            continue;
+            tOper += oper;
+            r -= x2;
+            diff--;
         }
     }
 
-    cout << no_of_op;
+    cout << tOper;
+    return;
 }
 
 int main()
