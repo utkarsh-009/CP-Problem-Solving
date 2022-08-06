@@ -1,41 +1,38 @@
 #include <bits/stdc++.h>
-#define ll long long
 using namespace std;
 
 void solve()
 {
-    ll n;
+
+    int n;
     cin >> n;
 
-    ll v[n][2];
-    for (ll i = 0; i < n; i++)
+    vector<pair<int, int>> kt;
+    unordered_map<int, int> mp;
+    for (int i = 0; i < n; i++)
     {
-        for (ll j = 0; j < 2; j++)
-        {
-            cin >> v[i][j];
-        }
+        int hk, ak;
+        cin >> hk >> ak;
+        kt.push_back(make_pair(hk, ak));
+        mp[hk]++;
     }
 
-    for (ll k = 0; k < n; k++)
+    for (auto it = kt.begin(); it != kt.end(); it++)
     {
-        ll hk = n - 1, ak = 0;
-        for (ll i = 0; i < n; i++)
-        {
-            if (i == k)
-            {
-                continue;
-            }
+        int hk = (n - 1) + mp[it->second];
+        int ak = (n - 1) - mp[it->second];
 
-            ((v[k][1] != v[i][0]) ? ak++ : hk++);
-        }
         cout << hk << " " << ak << endl;
     }
 }
 
 int main()
 {
+
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
     solve();
+
+    return 0;
 }
