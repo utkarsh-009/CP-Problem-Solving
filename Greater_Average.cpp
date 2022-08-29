@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
+    double a, b, c;
+    cin >> a >> b >> c;
+
+    (((a + b) / 2 > c) ? cout << "YES" : cout << "NO");
 }
 
 int main()
@@ -19,5 +20,6 @@ int main()
     while (t--)
     {
         solve();
+        cout << "\n";
     }
 }
