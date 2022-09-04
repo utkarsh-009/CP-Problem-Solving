@@ -2,12 +2,28 @@
 using namespace std;
 #define ll long long
 
+/*
+n = 7, a = 5, b = 3
+abcabca
+n = 6, a = 1, b = 1
+aaaaaa
+n = 6, a = 6, b = 1
+aaaaaa
+n = 5, a = 2, b = 2
+ababa
+*/
+
 void solve()
 {
-    int a = 97;
-    char b = a;
+    int n, a, b;
+    cin >> n >> a >> b;
 
-    cout << b;
+    for (int i = 0; i < n; i++)
+    {
+        int dist = 'a' + i % b;
+        char c = dist;
+        cout << c;
+    }
 }
 
 int main()
@@ -21,7 +37,7 @@ int main()
     while (t--)
     {
         solve();
-        cout << "\n";
+        cout << endl;
     }
 }
 
