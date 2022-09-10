@@ -4,10 +4,8 @@ using namespace std;
 
 void solve()
 {
-    int a = 97;
-    char b = a;
-
-    cout << b;
+    string s = "";
+    cout << s.length();
 }
 
 int main()
