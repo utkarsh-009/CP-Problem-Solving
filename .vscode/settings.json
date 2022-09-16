@@ -5,6 +5,7 @@
         "map": "cpp",
         "ostream": "cpp",
         "type_traits": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "valarray": "cpp"
     }
 }

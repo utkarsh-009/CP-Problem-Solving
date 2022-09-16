@@ -4,8 +4,8 @@ using namespace std;
 
 void solve()
 {
-    string s = "";
-    cout << s.length();
+    char c = 122;
+    cout << c;
 }
 
 int main()
