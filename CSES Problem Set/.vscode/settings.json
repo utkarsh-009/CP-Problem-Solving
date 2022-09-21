@@ -1,0 +1,11 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "iostream": "cpp",
+        "map": "cpp",
+        "ostream": "cpp",
+        "type_traits": "cpp",
+        "cmath": "cpp",
+        "valarray": "cpp"
+    }
+}
