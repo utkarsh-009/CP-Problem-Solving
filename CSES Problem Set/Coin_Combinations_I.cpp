@@ -2,22 +2,55 @@
 #define ll long long
 #define mod 1000000007
 using namespace std;
-
-int cntCombs(vector<int> coins, int n, int x)
+/*
+RECURSIVE:
+int cntCombs(vector<int> coins, int n, int sum)
 {
-    if (n == 0)
+    if (sum == 0)
     {
         return 1;
     }
 
-    int res = 0;
-    for (int j = 0; j < n; j++)
+    if (n <= 0)
     {
-        if (value - coins[j] >= 0)
+        return 0;
+    }
+
+    if (sum < 0)
+    {
+        return 0;
+    }
+
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (sum - coins[i] >= 0)
         {
-            res = 
+            res += cntCombs(coins, n, sum - coins[i]);
         }
     }
+    return res;
+}
+*/
+
+// DP
+ll cntCombs(vector<int> coins, int n, int sum)
+{
+    vector<int> numOfCombs(sum + 1, 0);
+    numOfCombs[0] = 1;
+
+    for (int val = 1; val <= sum; val++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (val - coins[j] >= 0)
+            {
+                numOfCombs[val] = (numOfCombs[val] + numOfCombs[val - coins[j]]) % mod;
+            }
+        }
+    }
+
+    return numOfCombs[sum] % mod;
 }
 
 void solve()
@@ -30,6 +63,8 @@ void solve()
     {
         cin >> coins[i];
     }
+
+    cout << cntCombs(coins, n, x);
 }
 
 int main()
