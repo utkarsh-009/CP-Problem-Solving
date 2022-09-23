@@ -1,31 +1,45 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cmath>
+
 using namespace std;
-#define ll long long
+#define int long long
 
-void solve()
+signed main()
 {
-    char c = 122;
-    cout << c;
-}
-
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
+    if (1)
+    {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        cout.tie(nullptr);
+    }
     int t;
     cin >> t;
-
     while (t--)
     {
-        solve();
-        cout << "\n";
+        int n, x, s, q;
+        cin >> n >> x >> s >> q;
+        vector<int> a(n);
+        a[0] = x * s;
+        q -= x * s;
+        if (q < 0)
+            cout << "-1\n";
+        else
+        {
+            for (int i = 0; i < n; ++i)
+            {
+                int now = min(x - 1, q);
+                a[i] += now;
+                q -= now;
+            }
+            if (q > 0)
+                cout << "-1\n";
+            else
+            {
+                for (int i = 0; i < n; ++i)
+                    cout << a[i] << " ";
+                cout << "\n";
+            }
+        }
     }
 }
-
-/*
-ASCII VALUES
-    0-9 => 48-57
-    A-Z => 65-90
-    a-z => 97-122
-*/
