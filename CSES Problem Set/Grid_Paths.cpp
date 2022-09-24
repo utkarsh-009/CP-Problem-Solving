@@ -68,7 +68,6 @@ void solve()
         }
     }
 
-    // int totalSafePaths = 0;
     cout << cntSafePaths(n, n, grid);
 }
 
