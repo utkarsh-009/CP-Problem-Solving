@@ -14,7 +14,8 @@ int minNoOfStepsToMake0(int n)
     int temp = n;
     while (temp > 0)
     {
-      
+        res = min(minNoOfStepsToMake0(n), minNoOfStepsToMake0(n - temp % 10) + 1);
+        temp /= 10;
     }
 
     return res;
