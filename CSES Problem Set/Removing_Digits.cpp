@@ -3,22 +3,27 @@
 #define mod 1000000007
 using namespace std;
 
-int minNoOfStepsToMake0(int n)
+/*
+RECURSIVE SOLUTION
+*/
+
+// DP
+ll minNoOfStepsToMake0(int n)
 {
-    if (n < 10)
+    vector<ll> minSteps(n + 1, INT_MAX);
+    minSteps[0] = 0;
+
+    for (int val = 1; val <= n; val++)
     {
-        return 0;
+        ll temp = val;
+        while (temp > 0)
+        {
+            minSteps[val] = min(minSteps[val], minSteps[val - temp % 10] + 1);
+            temp /= 10;
+        }
     }
 
-    int res = INT_MAX;
-    int temp = n;
-    while (temp > 0)
-    {
-        res = min(minNoOfStepsToMake0(n), minNoOfStepsToMake0(n - temp % 10) + 1);
-        temp /= 10;
-    }
-
-    return res;
+    return minSteps[n];
 }
 
 void solve()
