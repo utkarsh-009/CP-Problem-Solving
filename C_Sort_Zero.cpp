@@ -42,18 +42,61 @@ void solve()
 */
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
 
-    int arr[n];
+    vector<ll> v(n);
+    vector<ll> pref(n + 1), pref_comp(n + 1); // prefix vector to pre-compute no of distinct elements
+    map<ll, ll> max_freq, freq;
+
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
-        st.insert(arr[i]);
+        cin >> v[i];
+        max_freq[v[i]]++;
     }
 
-    int minOperations = st.size();
-    cout << 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (freq.find(v[i]) == freq.end()) // new number
+        {
+            freq[v[i]]++;
+            pref[i + 1] = pref[i] + 1;
+        }
+        else // repeated number
+        {
+            freq[v[i]]++;
+            pref[i + 1] = pref[i];
+        }
+
+        // number completed its last index
+        if (freq[v[i]] == max_freq[v[i]])
+        {
+            pref_comp[i + 1] = pref_comp[i] + 1;
+        }
+        else
+        {
+            pref_comp[i + 1] = pref_comp[i];
+        }
+    }
+
+    ll ans = pref[n], last = INT_MAX;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        // suffix not decreasing
+        if (v[i] > last)
+        {
+            break;
+        }
+
+        if (pref_comp[i] == pref[i])
+        {
+            ans = pref[i];
+        }
+
+        last = v[i];
+    }
+
+    cout << ans;
 }
 
 int main()
