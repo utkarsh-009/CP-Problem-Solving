@@ -22,7 +22,7 @@ void solve()
     {
         int diff = d[i];
 
-        if (ans[i - 1] - diff > 0 && (ans[i - 1] + diff != ans[i - 1] - diff))
+        if (ans[i - 1] - diff >= 0 && (ans[i - 1] + diff != ans[i - 1] - diff))
         {
             cout << -1;
             return;
