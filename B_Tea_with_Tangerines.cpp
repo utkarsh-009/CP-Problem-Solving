@@ -31,14 +31,10 @@ void solve()
                 int rem = a[i] - (mf * curr_max);
                 int newVal = curr_max + rem / mf;
 
-                cnt += mf;
-                if (2 * newVal >= curr_max)
-                {
-                    cnt--;
-                }
-
                 curr_max = max(curr_max, newVal);
                 curr_min = min(curr_min, newVal);
+
+                cnt += mf;
             }
             else
             {
