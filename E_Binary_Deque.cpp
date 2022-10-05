@@ -6,65 +6,53 @@ void solve()
     int n, sum;
     cin >> n >> sum;
 
-    vector<int> ind1;
-    int total = 0;
+    vector<int> a(n + 1);
+    // vector<int> preSum(n + 1);
+    // preSum[0] = 0;
 
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
+        cin >> a[i];
+        // preSum[i] = preSum[i - 1] + a[i];
+    }
 
-        if (x)
+    int max_sz = INT_MIN;
+    int i = 0, j = 0, curr_sum = 0;
+    while (j < n)
+    {
+        curr_sum += a[j];
+        if (curr_sum < sum)
         {
-            total += x;
-            ind1.push_back(x);
+            j++;
+        }
+        else if (curr_sum == sum)
+        {
+            max_sz = max(max_sz, j - i + 1);
+            j++;
+        }
+        else if (curr_sum > sum)
+        {
+            while (curr_sum > sum)
+            {
+                curr_sum -= a[i];
+                i++;
+            }
+
+            if (curr_sum == sum)
+            {
+                max_sz = max(max_sz, j - i + 1);
+            }
+            j++;
         }
     }
 
-    if (total < sum)
+    if (max_sz == INT_MIN)
     {
         cout << -1;
         return;
     }
 
-    if (total == sum)
-    {
-        cout << 0;
-        return;
-    }
-
-    int l = 0, r = n - 1;
-    int low = 0, high = ind1.size() - 1;
-    int diff = total - sum;
-
-    int tOper = 0;
-    while (diff != 0 && low != high)
-    {
-        int oper = 0;
-        int x1 = ind1[low] - l;
-        int x2 = ind1[high] - r;
-
-        if (min(x1, x2) == x1)
-        {
-            oper += ind1[low] - l + 1;
-            low++;
-            tOper += oper;
-            l += x1;
-            diff--;
-        }
-
-        else if (min(x1, x2) == x2)
-        {
-            oper += ind1[high] - r + 1;
-            high--;
-            tOper += oper;
-            r -= x2;
-            diff--;
-        }
-    }
-
-    cout << tOper;
-    return;
+    cout << n - max_sz;
 }
 
 int main()
