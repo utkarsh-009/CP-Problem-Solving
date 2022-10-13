@@ -5,20 +5,42 @@ using namespace std;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
 
-    vector<int> a(n), b(n);
+    vector<int> a(n), b;
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
     }
 
-    int low = 0, high = n - 1;
+    ll low = 0, high = n - 1;
     while (low <= high)
     {
+        b.push_back(a[high] - a[low]);
         low++;
         high--;
+    }
+
+    ll sz = b.size();
+    bool ok = true;
+    for (int i = 1; i < sz; i++)
+    {
+        if (b[i] > b[i - 1] || b[i] < 0)
+        {
+            ok = false;
+            break;
+        }
+    }
+
+    if (!ok)
+    {
+        cout << -1;
+    }
+
+    else
+    {
+        cout << b[0];
     }
 }
 
