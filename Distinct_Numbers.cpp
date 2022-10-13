@@ -9,42 +9,42 @@ void solve()
     cin >> n >> k;
 
     int maxe = 1;
-    set<int> s;
+    vector<int> a(n);
     for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
-
-        s.insert(x);
-        maxe = max(maxe, x);
+        a[i] = x;
     }
 
-    int max_score = 0;
+    sort(a.begin(), a.end());
+    ll max_score1 = 0, max_score2 = 0;
+    vector<int> missing;
 
-    for (int i = 1; i <= maxe && k; i++)
+    int curr = 0;
+    for (int i = 0; i < 2 * n; i++)
     {
-        if (s.find(i) == s.end())
+        if (a[curr] == i + 1)
         {
-            maxe = max(maxe, i);
-            int score = maxe - i;
-            max_score += score;
-            k--;
+            curr++;
+        }
+        else
+        {
+            missing.push_back(i + 1);
         }
     }
 
-    for (int i = 2 * n; i > n && k; i--)
+    for (int i = 0; i < k; i++)
     {
-        if (s.find(i) == s.end())
-        {
-            s.insert(i);
-            maxe = max(maxe, i);
-            int score = maxe - i;
-            max_score += score;
-            k--;
-        }
+        max_score1 += max(0, a[n - 1] - missing[i]);
     }
 
-    cout << max_score;
+    for (int i = 0; i < k - 1; i++)
+    {
+        max_score2 += max(0, 2 * n - missing[i]);
+    }
+
+    cout << max(max_score1, max_score2);
 }
 
 int main()
