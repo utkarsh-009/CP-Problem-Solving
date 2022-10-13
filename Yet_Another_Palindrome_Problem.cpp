@@ -5,6 +5,21 @@ using namespace std;
 
 void solve()
 {
+    int n;
+    cin >> n;
+
+    vector<int> a(n), b(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    int low = 0, high = n - 1;
+    while (low <= high)
+    {
+        low++;
+        high--;
+    }
 }
 
 int main()
