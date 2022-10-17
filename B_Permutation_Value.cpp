@@ -3,23 +3,33 @@
 #define mod 1000000007
 using namespace std;
 
-ll fact(ll n)
-{
-    if (n == 0)
-        return 1;
-    ll res = 1;
-    for (ll i = 2; i <= n; i++)
-        res = res * i;
-    return res;
-}
-ll nCr(ll n, ll r)
-{
-    return fact(n) / (fact(r) * fact(n - r));
-}
-
 void solve()
 {
-    cout << fact(10);
+    int n;
+    cin >> n;
+
+    vector<int> a(n);
+    int x = 1;
+    int i = 0, j = ((n % 2 == 0) ? n - 1 : n - 2);
+
+    while (i < n)
+    {
+        a[i] = x;
+        i += 2;
+        x++;
+    }
+
+    while (j > 0)
+    {
+        a[j] = x;
+        j -= 2;
+        x++;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << " ";
+    }
 }
 
 int main()

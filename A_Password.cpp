@@ -12,6 +12,7 @@ ll fact(ll n)
         res = res * i;
     return res;
 }
+
 ll nCr(ll n, ll r)
 {
     return fact(n) / (fact(r) * fact(n - r));
@@ -19,7 +20,17 @@ ll nCr(ll n, ll r)
 
 void solve()
 {
-    cout << fact(10);
+    ll n;
+    cin >> n;
+
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    ll rem = 10 - n;
+    cout << nCr(rem, 2) * 6;
 }
 
 int main()
