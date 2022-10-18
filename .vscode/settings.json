@@ -8,6 +8,9 @@
         "cmath": "cpp",
         "valarray": "cpp",
         "regex": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
     }
 }

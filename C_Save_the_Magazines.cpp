@@ -3,70 +3,81 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+Breaking every consecutive 1's subarray into two segments such that optimal solution for that segments is obtained
+Test Case 1:
+    4
+    0111
+    5 4 5 1
+
+->Handling corner cases
+    -> 1 box added at first, to calculate value when all boxes are 1 1 1
+    -> 1 box added at last, to push_back the curr_better if last box with lid needed to be shift
+-> 0111 => 001110
+-> lastIdx = 1,
+    C1: 0 1 0 1 1 0, curr_better = max(0, 1) = 1
+    C2: 0 1 1 0 1 0, curr_better = max(1, 0) = 1
+    C3: 0 1 1 1 0 0, curr_better = max(1, 4) = 4
+-> ans = 4 + 5 + 1 = 10
+-> ans = 10 + 4 = 14
+
+Test Case 2:
+    2
+    11
+    9424 3798
+=> 0110
+-> lastIdx = 0,
+    C1: 0 1 0 1 1 0, curr_better = max(0, -9424) = 0
+    C2: 0 1 1 0 1 0, curr_better = max(0, -3798) = 0
+=> ans = 9242 + 3798
+=> ans = 13222  + 0 = 13222
+*/
+
 void solve()
 {
     int n;
     cin >> n;
 
-    vector<char> lid(n);
-    vector<int> mags(n);
+    string lid;
+    cin >> lid;
+    lid = "0" + lid + "0";
 
-    int cnt1 = 0, last1 = -1;
-    for (int i = 0; i < n; i++)
+    vector<ll> a(n + 2);
+    for (int i = 1; i <= n; i++)
     {
-        cin >> lid[i];
-        if (lid[i])
+        cin >> a[i];
+    }
+
+    vector<ll> better;
+    ll ans = 0, curr_better = 0, last0Idx = 0;
+    for (int i = 0; i < n + 2; i++)
+    {
+        if (lid[i] == '0')
         {
-            cnt1++;
-            last1 = i;
+            better.push_back(curr_better);
+            curr_better = 0;
+            last0Idx = i;
+        }
+        else
+        {
+            curr_better = max(curr_better, a[last0Idx] - a[i]);
         }
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        cin >> mags[i];
-    }
-
-    int ans = 0;
-    for (int i = 1; i < n; i++)
-    {
-        if (lid[i] == '1' && lid[i - 1] == '0')
-        {
-            if (mags[i - 1] > mags[i])
-            {
-                lid[i] = '0';
-                lid[i - 1] = '1';
-
-                i--;
-            }
-        }
-    }
-
-    int i = 0, k = cnt1;
-    int curr_sum = 0;
-    while (i <= last1)
-    {
-        curr_sum = mags[i];
-        i++;
-    }
-    int max_sum = curr_sum;
-    while (i <= last1)
-    {
-        curr_sum += (mags[i] - mags[i - k]);
-        max_sum = max(max_sum, curr_sum);
-
-        i++;
-    }
-
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
         if (lid[i] == '1')
         {
-            ans += mags[i];
+            ans += a[i];
         }
     }
 
-    cout << max(ans, max_sum);
+    for (int i = 0; i < better.size(); i++)
+    {
+        ans += better[i];
+    }
+
+    cout << ans;
 }
 
 int main()
