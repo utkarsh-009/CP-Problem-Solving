@@ -3,28 +3,37 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+
+    All 11,111,1111,1111,... can be represented as 11*x or 111*y
+    Hence,
+    n = 11*x + 111*y (Eqn-1)
+    n = 11*(x + 10y) + y => n = 11*A + y
+
+    Taking mod11 both sides
+    n%11 = 0 + y%11
+    n%11 = y%11
+    => y = n%11
+
+    if, (n - y*111)%11 == 0 => YES
+    else, => NO
+*/
 void solve()
 {
     int n;
     cin >> n;
 
-    for (int i = 0; i * 11 <= 1000000000; i++)
+    int y = n % 11;
+    int x = n - y * 111;
+
+    if (x >= 0 && x % 11 == 0)
     {
-        for (int j = 0; j * 111 <= 100000000; j++)
-        {
-            if (i * 11 + j * 111 == n)
-            {
-                
-                cout << "YES";
-                return;
-            }
-            else if (i * 11 + j * 111 > n)
-            {
-                break;
-            }
-        }
+        cout << "YES";
     }
-    cout << "NO";
+    else
+    {
+        cout << "NO";
+    }
 }
 
 int main()
