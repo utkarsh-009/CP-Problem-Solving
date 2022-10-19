@@ -37,7 +37,7 @@ void solve()
         }
     }
 
-    // for 111, 11111,...
+    // for 111, 11111,....
     while (s.size() >= 2)
     {
         int curr = s.top();
