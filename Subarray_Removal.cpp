@@ -61,6 +61,7 @@ void solve()
     }
 
     // for 111, 11111,....
+    // As 1^1 = 0 => XOR of two ones is 0 => We will replace pair of 1's with 0 => 0 1 found => cnt++
     while (s.size() >= 2)
     {
         int curr = s.top();
