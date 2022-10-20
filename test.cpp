@@ -5,12 +5,6 @@ using namespace std;
 
 void solve()
 {
-    vector<string> dp(31);
-
-    for (auto x : dp)
-    {
-        cout << x << " ";
-    }
 }
 
 int main()

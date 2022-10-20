@@ -3,6 +3,29 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+EFFICIENT SOLUTION:
+void solve()
+{
+    int n;
+    cin>>n;
+
+    vector<int> a(n);
+    for(int i = 0; i < n; i++)
+    {
+        cin>>a[i];
+    }
+
+    int cnt0 = count(a.begin(), a.end(), 0);
+    int cnt1 = count(a.begin(), a.end(), 1);
+    int used = min(cnt1, cnt0);
+    int ans = used;
+    ans += (cnt1 - used)/3;
+
+    cout<<ans;
+}
+*/
+
 void solve()
 {
     int n;
