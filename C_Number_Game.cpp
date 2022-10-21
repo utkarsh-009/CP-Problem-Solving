@@ -3,58 +3,46 @@
 #define mod 1000000007
 using namespace std;
 
+// s.insert() operation for every element are much costlier than s(a.begin(), a.end()); ,where a is vector which stores all elements
 void solve()
 {
     int n;
     cin >> n;
-
-    multiset<int> a;
-    for (int i = 0; i < n; i++)
+    vector<int> a(n);
+    for (int &x : a)
     {
-        int x;
         cin >> x;
-
-        a.insert(x);
     }
 
-    int k = 0;
-    bool ok = true;
-    while (ok)
+    int ans = 0;
+    for (int k = 1; k <= n; ++k) // to find kmax
     {
-        for (int i = 0; i <= k; i++)
+        multiset<int> ms(a.begin(), a.end());
+        for (int i = 0; i < k; ++i) // k-stages => for i = 0 to i = k-1
         {
-            int x = k - i + 1;
-            int first = *a.begin();
-
-            if (first <= x && !a.empty())
+            auto it = ms.upper_bound(k - i); // gives iterator of element just less than or equal to k - i + 1
+            if (it == ms.begin())            // all elements are greater than k - i
             {
-                auto it = a.begin();
-                while (it != a.end() && x > *it)
-                {
-                    it++;
-                }
-
-                if (it == a.end())
-                {
-                    it--;
-                }
-
-                a.erase(it);
-                a.insert(x);
-            }
-            else
-            {
-                ok = false;
                 break;
             }
+
+            ms.erase(--it);
+            if (!ms.empty())
+            {
+                int x = *ms.begin();
+                ms.erase(ms.begin());
+                ms.insert(x + k - i);
+            }
         }
-        if (ok == false)
-        {
-            break;
-        }
-        k++;
+
+        /*
+        if Alice wins for k stages => there will be k less elements in the multiset as after every win of Alice,
+        Bob won't be able to insert element of value k-x+1. So, after k wins => there will be k less elements in multiset
+        */
+        if (ms.size() + k == n)
+            ans = k;
     }
-    cout << k;
+    cout << ans;
 }
 
 int main()
