@@ -10,10 +10,6 @@ void solve()
 
     map<string, string> mp;
 
-    mp["."] = "0";
-    mp["-."] = "1";
-    mp["--"] = "2";
-
     int i = 0, n = s.length();
     string ans = "";
     while (i <= n - 1)
