@@ -4,6 +4,11 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+Here obtained formula is => x/sum = k/100
+Binary Search to find right sum that will satisfy all the conditions. As all other terms are fixed except sum variable
+*/
+
 void solve()
 {
     ll n, k;
