@@ -2,7 +2,14 @@
 #define ll long long
 #define mod 1000000007
 using namespace std;
+/*
+Q: building n−1 two-way roads in such a way that all districts are reachable from each
+other and each pair of directly connected districts belong to different gangs
 
+- vector of pairs will store route to connect
+- if (a[i] != a[j] => not same gang && route.size < n-1 => less tha n-1 routes made till now && ith or jth are not connect to route
+   then, add a[i] and a[j] to route and make ith and jth as true
+*/
 bool check(vector<bool> connected)
 {
     for (int i = 0; i < connected.size(); i++)
