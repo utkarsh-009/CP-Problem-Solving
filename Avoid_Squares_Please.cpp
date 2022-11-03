@@ -5,14 +5,12 @@ using namespace std;
 
 void solve()
 {
-    vector<vector<int>> ans(5);
-    for (int i = 0; i < ans.size(); i++)
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < ans[0].size(); j++)
-        {
-            cout << ans[i][j] << "  ";
-        }
-        cout << endl;
+        cout << i + 1 << " ";
     }
 }
 

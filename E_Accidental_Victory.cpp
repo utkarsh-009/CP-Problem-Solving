@@ -3,6 +3,18 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+We have to check if player can win the championship
+
+- Find total sum of tokens
+- Make vector in sorted order w.r.t value of token
+- Last player with max value will always win, c = 1
+- Then from (n-2)th index subtract token value from sum
+- And check if the sum of all the values from 0 to i is less than a[i] i.e. value of token
+    if yes, break
+    else, c++ (Incrementing no of winners)
+- Output all indexes of players that can win from n-1 to n-1-c+1
+*/
 void solve()
 {
     int n;
@@ -21,21 +33,21 @@ void solve()
     sort(a.begin(), a.end());
 
     vector<int> ans;
-    ll c = 1;
+    ll c = 1; // Last player with max value will always win
     for (ll i = n - 2; i >= 0; i--)
     {
         ll token = a[i + 1].first;
         sum -= token;
-        if (sum < token)
+        if (sum < token) // Now the sum of all the values from 0 to i is less than a[i] i.e. value of token
         {
             break;
         }
-        else
+        else // no of players that can win
         {
             c++;
         }
     }
-    for (ll i = n - 1; i >= n - 1 - c + 1; i--)
+    for (ll i = n - 1; i >= n - 1 - c + 1; i--) // indexes of players that can win from n-1 to n-1-c+1
     {
         ans.push_back(a[i].second);
     }
