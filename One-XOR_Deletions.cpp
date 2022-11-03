@@ -23,13 +23,15 @@ void solve()
     for (auto m : mp)
     {
         int x = 0;
-        if (m.first & 1)
+
+        // As two numbers x and y we must have xor(x, y) <=1 => Their bits should differ at 1st bit
+        if (m.first & 1) // 1st-bit is set
         {
-            x = m.first - 1;
+            x = m.first - 1; // x is number with 1st bit as unset
         }
-        else
+        else // 1st-bit is unset
         {
-            x = m.first + 1;
+            x = m.first + 1; // x is number with 1st bit as set
         }
 
         int f = m.second;
@@ -38,7 +40,7 @@ void solve()
         {
             f += mp[x];
         }
-        ans = min(ans, n - f);
+        ans = min(ans, n - f); // Highest frequency x,y will be the only once that will remain in array.
     }
 
     cout << ans;
