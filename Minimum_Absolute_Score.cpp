@@ -11,7 +11,7 @@ void solve()
     string a, b;
     cin >> a;
     cin >> b;
-    }
+}
 
 int main()
 {

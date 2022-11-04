@@ -3,8 +3,11 @@
 #define mod 1000000007
 using namespace std;
 
-int arr[501][501];
+/*
+Recursive Solution to check all possible combinations and finding the required solution among them
 
+*/
+int arr[501][501];
 void dfsRec(int x, int y, int a, int &freq, int n)
 {
     if (x < 0 || y < 0 || x >= n || y >= n || arr[x][y] != -1 || freq == 0)
