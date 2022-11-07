@@ -5,12 +5,12 @@ using namespace std;
 
 /*
 Recursive Solution to check all possible combinations and finding the required solution among them
-
+-> We will perform dfs from bottom, and find the possible combination where all the conditions are satisfied.
 */
 int arr[501][501];
 void dfsRec(int x, int y, int a, int &freq, int n)
 {
-    if (x < 0 || y < 0 || x >= n || y >= n || arr[x][y] != -1 || freq == 0)
+    if (x < 0 || y < 0 || x >= n || y >= n || arr[x][y] != -1 || freq == 0) // checking condition for valid cell to place remaining element
     {
         return;
     }
@@ -26,16 +26,16 @@ void solve()
     int n;
     cin >> n;
 
-    memset(arr, -1, sizeof(arr));
+    memset(arr, -1, sizeof(arr)); // to keep track of visited cell
     vector<int> a(n);
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) // to store frequency of elements
     {
         cin >> a[i];
     }
 
     for (int i = n - 1; i >= 0; i--)
     {
-        int cnt = a[i], freq = a[i];
+        int freq = a[i];
         dfsRec(i, i, a[i], freq, n);
     }
 
