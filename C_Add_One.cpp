@@ -6,7 +6,6 @@ using namespace std;
 void solve()
 {
     ll n, m;
-
     cin >> n >> m;
 }
 
