@@ -5,14 +5,16 @@ using namespace std;
 
 void solve()
 {
-    vector<vector<int>> ans(5);
-    for (int i = 0; i < ans.size(); i++)
+    int n;
+    cin >> n;
+
+    if (n % 2 == 0)
     {
-        for (int j = 0; j < ans[0].size(); j++)
-        {
-            cout << ans[i][j] << "  ";
-        }
-        cout << endl;
+        cout << n / 2;
+    }
+    else
+    {
+        cout << n / 2 + 1;
     }
 }
 
@@ -37,4 +39,3 @@ ASCII VALUES
     A-Z => 65-90
     a-z => 97-122
 */
-
