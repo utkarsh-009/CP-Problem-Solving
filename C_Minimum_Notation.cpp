@@ -7,10 +7,12 @@ Approach:
 - The minimum of all chars('0','1',...) will be at the start of the string. All the chars that are in lower position
 than the last position of last minimum char will be added by 1. These all will be placed at their lexicographical position
 using multiset.
+- Only when lower position chars are '9' or the minimum char itself are not added by 1.
 Now check the next minimum element that is not present at its lexicographical position.
 
+Note:
 Use Map to store last occurence position of every character that is present in the string.
-Using 
+Using Multiset we keep the notation sorted
 */
 void solve()
 {
