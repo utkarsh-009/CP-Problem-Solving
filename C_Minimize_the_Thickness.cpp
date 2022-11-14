@@ -3,6 +3,10 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+- Implementation-based where we use two nested for loops and find the maximum thickeness for every 'i' sum (a0 + a1 +...+ai)
+- We take minimum value of all these maximum thickness
+*/
 void solve()
 {
     int n;
