@@ -3,6 +3,12 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+- As width of each rectangle is power of 2, hence we count powers of two, 2^20 is maximum possible power of 2.
+- Pick the largest available rectangle that can fit into the current layer, and place it there. Repeat until this layer cannot
+fit any more rectangles.
+- If more rectangles remain, increment height by 1 and now repeat the last three steps. Else, output the current value of height.
+*/
 void solve()
 {
     ll n, box_w;
@@ -22,6 +28,7 @@ void solve()
         int largest = -1;
         for (int size = 19; size >= 0; size--)
         {
+            // Shifting 1 bit by size and taking its AND with cnt[size] (which stores remaining powers of 2)
             if (cnt[size] && (1 << size) <= BOXwidth_left)
             {
                 largest = size;
@@ -29,7 +36,7 @@ void solve()
             }
         }
 
-        if (largest == -1)
+        if (largest == -1) // The boxwidth remaining is not sufficient to place new box, hence we increase height
         {
             h++;
             BOXwidth_left = box_w;
@@ -43,6 +50,7 @@ void solve()
             }
         }
 
+        // Now, updating cnt array and remaining box width
         cnt[largest] -= 1;
         BOXwidth_left -= 1 << largest;
     }
