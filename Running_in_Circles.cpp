@@ -3,6 +3,13 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+- The machine only counts the lap when Ada runs in the same direction as the last lap
+- For every runs:
+    If direction changed => Ada needs to cover the (remaining dist from start + one whole round) inorder to count the lap
+    If same direction => Just add len to dist
+- lap will be incremented by dist/l and the remaining distance (dist%l) will be stored dist
+*/
 ll solve()
 {
     ll l, n;
@@ -15,6 +22,7 @@ ll solve()
         ll len;
         char dir;
         cin >> len >> dir;
+        // if direction changed => Ada needs to cover the (remaining dist from start + one whole round) inorder to count the lap
         if (curr_dir != dir)
         {
             if (dist > len)
@@ -27,14 +35,16 @@ ll solve()
                 curr_dir = dir;
             }
         }
+        // If same direction => Just add len to dist
         else
         {
             dist += len;
         }
+
+        // lap will be incremented by dist/l and the remaining distance (dist%l) will be stored dist
         lap += (dist / l);
         dist %= l;
     }
-
     return lap;
 }
 
