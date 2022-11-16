@@ -38,6 +38,8 @@ void solve()
         cin >> k >> l1 >> r1 >> l2 >> r2;
         l1--, l2--, r1--, r2--;
 
+
+
         int totalf = r1 - l1 + 1;
         int totals = r2 - l2 + 1;
         int totalfo, totalso;
@@ -58,6 +60,8 @@ void solve()
         {
             totalso = arr[k][r2] - arr[k][l2 - 1];
         }
+
+
 
         long sum = (long)(totalf - totalfo) * (long)(totalso) + (long)(totalfo) * (long)(totals - totalso);
         cout << sum << endl;

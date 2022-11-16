@@ -8,15 +8,15 @@ void solve()
     int n, m;
     cin >> n >> m;
 
-    // int a[n][m];
+    char a[n][m];
     int cnt1 = 0;
-    
+
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
             cin >> a[i][j];
-            cnt1 += a[i][j];
+            cnt1 += (a[i][j] - '0');
         }
     }
 
@@ -25,7 +25,7 @@ void solve()
     {
         for (int j = 0; j < m - 1; j++)
         {
-            int sum = a[i][j] + a[i + 1][j] + a[i + 1][j + 1] + a[i][j + 1];
+            int sum = (a[i][j] - '0') + (a[i + 1][j] - '0') + (a[i + 1][j + 1] - '0') + (a[i][j + 1] - '0');
             minSum = min(minSum, sum);
         }
     }
