@@ -3,6 +3,12 @@
 #define mod 1000000007
 using namespace std;
 
+/*
+- We need to make difference array after sorting house number to find no of non-infected houses between two infected houses
+- We keep track of 'safeHouse' and 'day',
+    -> day: day taken (Note: 2 days needed to save a grp)
+    -> safeHouse: Total number of safe houses will be += (curr - 1)
+*/
 void solve()
 {
     ll n, m;
@@ -13,8 +19,8 @@ void solve()
     {
         cin >> v[i];
     }
-    // To make house number in increasing order 
-    sort(v.begin(), v.end()); 
+    // To make house number in increasing order
+    sort(v.begin(), v.end());
 
     vector<ll> grpHouses; // to find  no of non-infected houses between two infected houses
     for (ll i = 0; i < m - 1; i++)
@@ -28,7 +34,6 @@ void solve()
     ll day = 0;
     ll safeHouses = 0;
     sort(grpHouses.begin(), grpHouses.end(), greater<ll>());
-
     for (ll i = 0; i < grpHouses.size(); i++)
     {
         ll houses = grpHouses[i];
