@@ -1,36 +1,51 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define mod 1000000007
 using namespace std;
+#define ll long long
 
-void solve()
+ll integerSqrt(ll x)
 {
-    ll l, r;
-    cin >> l >> r;
-
-    ll ans = 0;
-
-    cout << ans;
+    return floor(sqrtl(x));
 }
 
-int main()
+bool isPerfectSquare(ll x)
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int t;
-    cin >> t;
-
-    while (t--)
+    if (x >= 0)
     {
-        solve();
-        cout << "\n";
+        ll sr = integerSqrt(x);
+        return (sr * sr == x);
+    }
+    return false;
+}
+
+ll solve(ll n)
+{
+    if (n == 0)
+    {
+        return 0;
+    }
+    else if (isPerfectSquare(n)) // n is perfect square
+    {
+        return (integerSqrt(n) - 1) * 3 + 1;
+    }
+    else if (isPerfectSquare(n + 1)) // n-1 is a perfect square
+    {
+        ll t = integerSqrt(n);
+        return t * 3;
+    }
+    else // for other n
+    {
+        ll x = integerSqrt(n);
+        return ((x - 1) * 3) + 1 + ((n - x * x) / x);
     }
 }
-
-/*
-ASCII VALUES
-    0-9 => 48-57
-    A-Z => 65-90
-    a-z => 97-122
-*/
+int main()
+{
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        ll l, r;
+        cin >> l >> r;
+        cout << solve(r) - solve(l - 1) << "\n";
+    }
+}
