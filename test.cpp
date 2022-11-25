@@ -2,11 +2,15 @@
 using namespace std;
 int main()
 {
-    map<int, pair<int, int>> mp;
-    for (auto x : mp)
+    for (int i = 1; i < INT_MAX; i++)
     {
-        cout << x.first << " " << x.second;
+        for (int j = 1; j < INT_MAX; j++)
+        {
+            if (99998 * (i ^ j) == 99997 * i + j)
+            {
+                cout << i << " " << j;
+                return 0;
+            }
+        }
     }
-
-    return 0;
 }
