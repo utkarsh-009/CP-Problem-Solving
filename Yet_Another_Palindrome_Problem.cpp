@@ -3,6 +3,7 @@
 #define mod 1000000007
 using namespace std;
 
+
 void solve()
 {
     ll n;
