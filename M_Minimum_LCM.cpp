@@ -2,7 +2,15 @@
 #define ll long long
 #define mod 1000000007
 using namespace std;
-
+/*
+if b >= a,
+- b%a = 0 => lcm(a,b) = b i.e. Less than n
+- b%a != 0 => lcm(a,b) will be atleast 2*b
+    Since b is atleast n/2 i.e. b >= n/2 => 2*b >= n
+=> b%a = 0 is optimal solution.
+As a + b = n, and as 'a' is divisor of itself and 'b' is also divisor of a => n is divisor of b
+Hence, we need to search for a only among the divisors of n and will be b = n-a
+*/
 void solve()
 {
     ll n;
