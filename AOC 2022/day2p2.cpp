@@ -6,10 +6,10 @@ using namespace std;
 void solve()
 {
 
-    // #ifndef ONLINE_JUDGE
-    //     freopen("day2INPUT.txt", "r", stdin);
-    //     freopen("output.txt", "w", stdin);
-    // #endif
+#ifndef ONLINE_JUDGE
+    freopen("day2INPUT.txt", "r", stdin);
+    // freopen("output.txt", "w", stdin);
+#endif
 
     int t;
     cin >> t;
