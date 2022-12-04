@@ -5,7 +5,10 @@ using namespace std;
  
 void solve()
 {
-    
+#ifndef ONLINE_JUDGE
+    freopen("day3p2INPUT.txt", "r", stdin);
+    // freopen("output.txt", "w", stdin);
+#endif
 }
  
 int main()
