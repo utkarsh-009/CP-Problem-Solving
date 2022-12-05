@@ -23,8 +23,7 @@ void solve()
     // freopen("output.txt", "w", stdin);
 #endif
 
-    int t;
-    cin >> t;
+    int t = 503;
 
     map<int, vector<char>> mp;
     mp[1] = {'Q', 'W', 'P', 'S', 'Z', 'R', 'H', 'D'};
@@ -37,9 +36,9 @@ void solve()
     mp[8] = {'D', 'T', 'Z', 'C', 'J', 'G', 'H', 'F'};
     mp[9] = {'W', 'P', 'V', 'M', 'B', 'H'};
 
-    for (int i = 0; i < t; i++)
+    for (int q = 0; q < t; q++)
     {
-        int no_of_stacks = 0, src = 0, dst = 0;
+        int crates = 0, src = 0, dst = 0;
         string s;
         getline(cin, s);
         // cin >> s;
@@ -48,7 +47,7 @@ void solve()
         string num = "";
         for (int i = 0; i < n; i++)
         {
-            if (num == "" && isdigit(s[i]) && no_of_stacks == 0)
+            if (num == "" && isdigit(s[i]) && crates == 0)
             {
                 while (isdigit(s[i]))
                 {
@@ -56,7 +55,7 @@ void solve()
                     i++;
                 }
 
-                istringstream(num) >> no_of_stacks;
+                istringstream(num) >> crates;
                 num = "";
             }
 
@@ -84,7 +83,20 @@ void solve()
             }
         }
 
-        cout << no_of_stacks << " " << src << " " << dst << " " << endl;
+        // cout << crates << " " << src << " " << dst << " " << endl;
+        int sz = mp[dst].size();
+        for (int i = 0; i < crates; i++)
+        {
+            mp[dst].push_back(mp[src].back());
+            mp[src].pop_back();
+        }
+
+        reverse(mp[dst].begin() + sz, mp[dst].begin() + sz + crates);
+    }
+
+    for (int i = 1; i <= 9; i++)
+    {
+        cout << mp[i].back();
     }
 }
 
