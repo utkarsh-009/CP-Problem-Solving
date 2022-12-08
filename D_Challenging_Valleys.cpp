@@ -2,13 +2,10 @@
 #define ll long long
 #define mod 1000000007
 using namespace std;
- 
+
 void solve()
 {
-#ifndef ONLINE_JUDGE
-    freopen("day3p2INPUT.txt", "r", stdin);
-    // freopen("output.txt", "w", stdin);
-#endif
+    
 }
  
 int main()
@@ -16,8 +13,14 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
  
-    solve();
-
+    int t;
+    cin >> t;
+ 
+    while (t--)
+    {
+        solve();
+		cout<<"\n";
+    }
 }
 
 /*
