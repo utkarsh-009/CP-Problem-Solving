@@ -61,35 +61,6 @@ void solve()
             }
         }
     }
-
-    // vector<bool> visi(black, false);
-    map<pair<int, int>, bool> visi;
-
-    if (wall[0][0] == 'B' && wall[0][1] != 'B')
-    {
-        helper(wall, visi, 0, 0);
-    }
-    else
-    {
-        helper(wall, visi, 1, 0);
-    }
-
-    for (auto it = visi.begin(); it != visi.end(); it++)
-    {
-        if (it->second == true)
-        {
-            black--;
-        }
-    }
-
-    if (black == 0)
-    {
-        cout << "YES";
-    }
-    else
-    {
-        cout << "NO";
-    }
 }
 
 int main()
