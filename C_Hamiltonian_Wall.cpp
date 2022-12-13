@@ -2,43 +2,51 @@
 using namespace std;
 #define ll long long
 
-bool isSafe(vector<vector<char>> wall, map<pair<int, int>, bool> visited, int x, int y, int n)
-{
-    if (x < 0 || x >= 2 || y < 0 || y >= n || visited[{x, y}] == true)
+/*
+In each iteration, we keep the track of brush for each column
+
+    void solve()
     {
-        return false;
-    }
+        int n;
+        cin >> n;
 
-    return true;
-}
-
-bool helper(vector<vector<char>> wall, map<pair<int, int>, bool> &visited, int i, int j)
-{
-    if (wall[i][j] == 'B')
-    {
-        visited[{i, j}] = true;
-        return true;
-    }
-
-    if (isSafe(wall, visited, i, j, wall[0].size()))
-    {
-
-        visited[{i, j}] = true;
-        if (helper(wall, visited, i + 1, j))
+        int black = 0;
+        vector<vector<char>> wall(2, vector<char>(n));
+        for (int i = 0; i < 2; i++)
         {
-            return true;
+            for (int j = 0; j < n; j++)
+            {
+                cin >> wall[i][j];
+            }
         }
 
-        if (helper(wall, visited, i + 1, j))
+        bool r0 = true, r1 = true;
+        for (int j = 0; j < n; j++)
         {
-            return true;
+            if (wall[0][j] == 'B' && wall[1][j] == 'B')
+            {
+                swap(r0, r1);
+            }
+            else if (wall[0][j] == 'B')
+            {
+                r1 = false;
+            }
+            else if (wall[1][j] == 'B')
+            {
+                r0 = false;
+            }
+            else
+            {
+                cout << "NO";
+                return;
+            }
         }
 
-        visited[{i, j}] = false;
+        ((r0 || r1) ? cout << "YES" : cout << "NO");
     }
+*/
 
-    return false;
-}
+
 
 void solve()
 {
@@ -51,16 +59,15 @@ void solve()
     {
         for (int j = 0; j < n; j++)
         {
-            char ch;
-            cin >> ch;
-
-            wall[i][j] = ch;
+            cin >> wall[i][j];
             if (wall[i][j] == 'B')
             {
                 black++;
             }
         }
     }
+
+
 }
 
 int main()
