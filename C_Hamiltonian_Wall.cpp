@@ -53,6 +53,8 @@ void solve()
     int n;
     cin >> n;
 
+
+
     int black = 0;
     vector<vector<char>> wall(2, vector<char>(n));
     for (int i = 0; i < 2; i++)
