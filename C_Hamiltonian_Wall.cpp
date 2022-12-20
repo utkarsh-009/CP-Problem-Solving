@@ -3,7 +3,7 @@ using namespace std;
 #define ll long long
 
 /*
-In each iteration, we keep the track of brush for each column
+// M1: In each iteration, we keep the track of brush for each column
 
     void solve()
     {
@@ -46,7 +46,7 @@ In each iteration, we keep the track of brush for each column
     }
 */
 
-
+// M2: DP
 
 void solve()
 {
@@ -66,8 +66,6 @@ void solve()
             }
         }
     }
-
-
 }
 
 int main()
