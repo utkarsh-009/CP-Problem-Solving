@@ -15,8 +15,7 @@ void solve()
 
     ll N = n;
     vector<ll> ans;
-
-    for (ll i = 0; i * i <= N; i++)
+    for (ll i = 2; i * i <= N; i++)
     {
         if (n % i == 0)
         {
@@ -29,6 +28,7 @@ void solve()
             break;
         }
     }
+
     if (ans.size() < 3)
     {
         cout << "NO";
