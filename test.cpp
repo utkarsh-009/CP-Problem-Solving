@@ -10,38 +10,31 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-    ll n;
-    cin >> n;
+    vector<int> a{5, 1, 2, 4, 3};
+    sort(a.begin(), a.end());
 
-    ll N = n;
-    vector<ll> ans;
+    int n = 5, l = 5, r = 8;
+    int ans = 0;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        int x = a[i];
+        int idx1 = upper_bound(a.begin(), a.begin() + i + 1, abs(r - x)) - a.begin();
+        int idx2 = upper_bound(a.begin(), a.begin() + i + 1, abs(x - l)) - a.begin();
 
-    for (ll i = 0; i * i <= N; i++)
-    {
-        if (n % i == 0)
+        if (a[idx1] == r)
         {
-            n = n / i;
-            ans.push_back(i);
+            idx1--;
         }
-        if (ans.size() == 2)
+        if (a[idx2] == l)
         {
-            ans.push_back(n);
-            break;
+            idx2--;
         }
+        cout << idx1 << " " << idx2 << endl;
+
+        ans += (idx1 - idx2);
     }
-    if (ans.size() < 3)
-    {
-        cout << "NO";
-    }
-    else if (ans[0] == ans[2] || ans[1] == ans[2])
-    {
-        cout << "NO";
-    }
-    else
-    {
-        cout << "YES" << endl;
-        cout << ans[0] << " " << ans[1] << " " << ans[2];
-    }
+
+    cout << ans;
 }
 
 int main()
@@ -49,14 +42,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t;
-    cin >> t;
-
-    while (t--)
-    {
-        solve();
-        cout << '\n';
-    }
+    solve();
 }
 
 /*
