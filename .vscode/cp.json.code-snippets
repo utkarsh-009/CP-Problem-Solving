@@ -49,8 +49,13 @@ int main()
 }
 
 /*
-ASCII VALUES
+IMP
+-> ASCII VALUES
     0-9 => 48-57
     A-Z => 65-90
     a-z => 97-122
+
+-> Fermat’s little theorem: (Here, m is prime can be = 1000000007 )
+    1 % m = a^(m-1) % m
+    a^(-1) % m ≡ a^(m-2) % m
 */
