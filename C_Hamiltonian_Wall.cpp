@@ -49,6 +49,7 @@ using namespace std;
 // M2: DP
 
 void solve()
+
 {
     int n;
     cin >> n;
