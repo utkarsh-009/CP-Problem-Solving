@@ -31,10 +31,6 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-    int n;
-    cin >> n;
-
-
 }
 
 int main()
