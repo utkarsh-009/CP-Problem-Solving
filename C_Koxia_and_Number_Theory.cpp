@@ -9,7 +9,7 @@ ll mod_exp(ll a, ll b, ll mod)
     int res = 1;     // Initialize result
     a = a % mod; // Update x if it is more than or equal to p
     if (a == 0) return 0; // In case x is divisible by p;
- 
+
     while (b > 0)
     {
         // If y is odd, multiply x with result
@@ -26,28 +26,47 @@ ll mod_exp(ll a, ll b, ll mod)
 
 void solve()
 {
-// #ifndef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdin);
-// #endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdin);
+    // #endif
 
-    
+    int n;
+    cin >> n;
+
+    vector<ll> a(n);
+    bool flag = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        if(a[i] == 1) {flag = 1;}
+    }
+
+    if(flag)
+    {
+        cout<<"YES";
+        return ;
+    }
+    else
+    {
+        
+    }
+
 }
- 
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
- 
-    int t;
-    cin>>t;
 
-    while(t--)
+    int t;
+    cin >> t;
+
+    while (t--)
     {
         solve();
-        cout<<'\n';
+        cout << '\n';
     }
-
 }
 
 /*
