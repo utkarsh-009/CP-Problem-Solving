@@ -34,23 +34,6 @@ void solve()
     int n;
     cin >> n;
 
-    vector<ll> a(n);
-    bool flag = 0;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> a[i];
-        if(a[i] == 1) {flag = 1;}
-    }
-
-    if(flag)
-    {
-        cout<<"YES";
-        return ;
-    }
-    else
-    {
-        
-    }
 
 }
 
