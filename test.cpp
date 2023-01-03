@@ -10,31 +10,23 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-    vector<int> a{5, 1, 2, 4, 3};
-    sort(a.begin(), a.end());
+    int n, m;
+    cin >> n >> m;
 
-    int n = 5, l = 5, r = 8;
-    int ans = 0;
-    for (int i = n - 1; i >= 0; i--)
+    ll sum = 0;
+    vector<ll> a(n + 1), pre(n + 1);
+    for (int i = 1; i <= n; i++)
     {
-        int x = a[i];
-        int idx1 = upper_bound(a.begin(), a.begin() + i + 1, abs(r - x)) - a.begin();
-        int idx2 = upper_bound(a.begin(), a.begin() + i + 1, abs(x - l)) - a.begin();
+        cin >> a[i];
 
-        if (a[idx1] == r)
-        {
-            idx1--;
-        }
-        if (a[idx2] == l)
-        {
-            idx2--;
-        }
-        cout << idx1 << " " << idx2 << endl;
-
-        ans += (idx1 - idx2);
+        sum += a[i];
+        pre[i] = sum;
     }
 
-    cout << ans;
+    for (int x : pre)
+    {
+        cout << x << " ";
+    }
 }
 
 int main()
