@@ -43,11 +43,6 @@ void solve()
         sum += a[i];
         pre[i] = sum;
     }
-
-    priority_queue<int, vector<int>, greater<int>> pq;
-    
-
-    cout << ans;
 }
 
 int main()
