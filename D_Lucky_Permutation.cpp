@@ -40,27 +40,6 @@ void solve()
         cin >> a[i];
     }
 
-    int correct = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (a[i] == i + 1)
-        {
-            correct++;
-        }
-    }
-
-    if (correct == n)
-    {
-        cout << 1;
-    }
-    else if (correct == n - 2)
-    {
-        cout << 0;
-    }
-    else
-    {
-        cout << (n / 2 + 1) - correct;
-    }
 }
 
 int main()
