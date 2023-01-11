@@ -4,24 +4,15 @@
 using namespace std;
 
 /*
-ll mod_exp(ll a, ll b, ll mod)
-{
-    int res = 1;     // Initialize result
-    a = a % mod; // Update x if it is more than or equal to p
-    if (a == 0) return 0; // In case x is divisible by p;
+-> ai = k1p, aj = k2p. For any prime p, ai and aj should have only one multiple
+-> GOAL: We want only one index s.t. (ai+x)%p = 0
+-> We will store frequency of modulous (%) of size p:
+-> CASE1: if any two elements are equal then ans is possible
+-> CASE2: Generate freq table for every prime p
+    Find some value k, 0<=k<=p-1, such that freq[k] <= 1 => Apply (k-1) shifts
+    x mod p = k-p
+-> if no such k exists => Answer is possible; Else using CRT we can get the value of x => Ans is possible
 
-    while (b > 0)
-    {
-        // If y is odd, multiply x with result
-        if (b & 1)
-            res = (res*a) % mod;
-
-        // y must be even now
-        b = b>>1; // y = y/2
-        a = (a*a) % mod;
-    }
-    return res;
-}
 */
 
 void solve()
@@ -31,6 +22,58 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
+    int n;
+    cin >> n;
+
+    vector<ll> a(n), primes;
+    for (ll i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    sort(a.begin(), a.end());
+    for (ll i = 1; i < n; i++)
+    {
+        if (a[i - 1] == a[i])
+        {
+            cout << "NO";
+            return;
+        }
+    }
+
+    for (int i = 2; i < 60; i++)
+    {
+        for (int j = 2; j <= i; j++)
+        {
+            if (j == i)
+            {
+                primes.push_back(i);
+            }
+            else if (i % j == 0)
+            {
+                break;
+            }
+        }
+    }
+
+    for (ll i = 0; i < primes.size(); i++)
+    {
+        ll prime = primes[i];
+        vector<ll> moduloFreq(prime);
+
+        for (int j = 0; j < n; j++)
+        {
+            moduloFreq[a[j] % prime]++;
+        }
+
+        if (*min_element(moduloFreq.begin(), moduloFreq.end()) >= 2)
+        {
+            cout << "NO";
+            return;
+        }
+    }
+
+    cout << "YES";
 }
 
 int main()
