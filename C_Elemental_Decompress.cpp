@@ -34,70 +34,57 @@ void solve()
     int n;
     cin >> n;
 
-    vector<int> a(n), p1(n), p2(n);
-    map<int, bool> used1, used2;
+    vector<int> a(n + 1), p1(n + 1), p2(n + 1);
     bool flag = true;
-    for (int i = 0; i < n; i++)
+    vector<vector<int>> adj(n + 1);
+    for (int i = 1; i <= n; i++)
     {
         cin >> a[i];
+        adj[a[i]].push_back(i);
+    }
 
-        if (used1[a[i]] == false)
+    stack<int> empty_space_a;
+    stack<int> empty_space_b;
+
+    for (int i = n; i > 0; i--)
+    {
+        ll extra = adj[i].size();
+        if (extra == 0)
         {
-            p1[i] = a[i];
-            used1[a[i]] = true;
+            if (empty_space_a.size() == 0 && empty_space_b.size() == 0)
+            {
+                flag = false;
+                break;
+            }
+
+            ll pos = empty_space_a.top();
+            empty_space_a.pop();
+            p1[pos] = i;
+
+            pos = empty_space_b.top();
+            empty_space_b.pop();
+            p2[pos] = i;
         }
-        else if (used2[a[i]] == false)
+        else if (extra == 1)
         {
-            p2[i] = a[i];
-            used2[a[i]] = true;
+            ll pos = adj[i][0];
+            p1[pos] = p2[pos] = i;
+        }
+        else if (extra == 2)
+        {
+            ll pos1 = adj[i][0];
+            ll pos2 = adj[i][1];
+
+            p1[pos1] = i;
+            empty_space_b.push(pos1);
+
+            p2[pos2] = i;
+            empty_space_a.push(pos2);
         }
         else
         {
             flag = false;
-        }
-    }
-
-    set<int> s1, s2;
-    for (int i = 1; i <= n; i++)
-    {
-        if (used1[i] == false)
-        {
-            s1.insert(i);
-        }
-
-        if (used2[i] == false)
-        {
-            s2.insert(i);
-        }
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        if (p2[i] == 0)
-        {
-            auto it = s2.upper_bound(p1[i]);
-            if (it == s2.begin())
-            {
-                flag = false;
-                break;
-            }
-
-            it--;
-            p2[i] = *it;
-            s2.erase(it);
-        }
-        else
-        {
-            auto it = s1.upper_bound(p2[i]);
-            if (it == s1.begin())
-            {
-                flag = false;
-                break;
-            }
-
-            it--;
-            p1[i] = *it;
-            s1.erase(it);
+            break;
         }
     }
 
@@ -109,16 +96,16 @@ void solve()
     {
         cout << "YES" << endl;
 
-        for (int x : p1)
+        for (int i = 1; i <= n; i++)
         {
-            cout << x << " ";
+            cout << p1[i] << " ";
         }
 
         cout << endl;
 
-        for (int x : p2)
+        for (int i = 1; i <= n; i++)
         {
-            cout << x << " ";
+            cout << p2[i] << " ";
         }
     }
 }
