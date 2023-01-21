@@ -1,0 +1,2 @@
+
+    int fact = factorial(n);
