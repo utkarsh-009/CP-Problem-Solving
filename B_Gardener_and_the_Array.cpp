@@ -3,8 +3,6 @@
 #define mod 1000000007
 using namespace std;
 
-
-
 void solve()
 {
     // #ifndef ONLINE_JUDGE
@@ -14,7 +12,53 @@ void solve()
 
     int n;
     cin >> n;
-    
+
+    unordered_map<ll, ll> mp; // to store occurence of set bits
+    vector<vector<int>> vv;   // stores all set bits of number ci
+
+    for (int i = 0; i < n; i++)
+    {
+        int k;
+        cin >> k;
+
+        vector<int> v(k);
+        for (int i = 0; i < k; i++)
+        {
+            cin >> v[i];
+            mp[v[i]]++;
+        }
+
+        vv.push_back(v);
+    }
+
+    bool ans = true;
+    for (int i = 0; i < n; i++)
+    {
+        ans = true;
+        for (int j : vv[i])
+        {
+            /*
+           if occurence of any bit is greater than 1 => hence after removing one set bit, it will not affect the OR but
+           if occurence of any bit is less than or equal to 1 then it will affect the OR.
+            */
+            if (mp[j] <= 1)
+            {
+                ans = false;
+            }
+        }
+
+        // if any sequence all the of its set bits >= 1 => Subsequence can be made
+        if (ans)
+        {
+            cout << "Yes";
+            return;
+        }
+    }
+
+    if (!ans)
+    {
+        cout << "No";
+    }
 }
 
 int main()
