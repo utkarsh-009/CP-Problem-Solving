@@ -1,45 +1,43 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define mod 1000000007
 using namespace std;
-
-void solve()
-{
-    // #ifndef ONLINE_JUDGE
-    //     freopen("day3p2INPUT.txt", "r", stdin);
-    //     freopen("output.txt", "w", stdin);
-    // #endif
-
-    int n, m;
-    cin >> n >> m;
-
-    ll sum = 0;
-    vector<ll> a(n + 1), pre(n + 1);
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> a[i];
-
-        sum += a[i];
-        pre[i] = sum;
-    }
-
-    for (int x : pre)
-    {
-        cout << x << " ";
-    }
-}
-
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    solve();
+    // Number of items
+    int n;
+    cin >> n;
+    // category of items
+    int category[n];
+    // Input of category of items
+    for (int i = 0; i < n; i++)
+    {
+        cin >> category[i];
+    }
+    // price of items
+    int prices[n];
+    // Input of prices of items
+    for (int i = 0; i < n; i++)
+    {
+        cin >> prices[i];
+    }
+    // store the maximum profit
+    int maximumProfit = 0;
+    // store unique category of items till current item
+    set<int> uniqueCategory;
+    // Iterate items to find the maximum profit
+    for (int i = 0; i < n; i++)
+    {
+        // add current category into unique category items
+        uniqueCategory.insert(category[i]);
+        // count the total unique category
+        int totalUniqueCategory = uniqueCategory.size();
+        // find the total current profit by multiplying
+        // price[i]*totalUniqueItems till the item
+        int currentProfit = totalUniqueCategory * prices[i];
+        cout << currentProfit << " ";
+        // add current profit into total profit
+        maximumProfit += currentProfit;
+    }
+    // print total profit
+    cout << maximumProfit << endl;
+    return 0;
 }
-
-/*
-ASCII VALUES
-    0-9 => 48-57
-    A-Z => 65-90
-    a-z => 97-122
-*/
