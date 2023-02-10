@@ -22,19 +22,6 @@ void solve()
     {
         cin >> b[i];
     }
-
-    vector<pair<int, int>> area_covered;
-    for (int i = 0; i < n; i++)
-    {
-        int x1 = b[i] - h;
-        int x2 = b[i] + h;
-        area_covered.push_back({x1, x2});
-    }
-
-    for(int i = 0; i < n; i++)
-    {
-        
-    }
 }
 
 int main()
