@@ -5,28 +5,30 @@ using namespace std;
 
 void solve()
 {
-// #ifndef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdin);
-// #endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdin);
+    // #endif
+
+    int n;
+    cin >> n;
 
     
 }
- 
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
- 
-    int t;
-    cin>>t;
 
-    while(t--)
+    int t;
+    cin >> t;
+
+    while (t--)
     {
         solve();
-        cout<<'\n';
+        cout << '\n';
     }
-
 }
 
 /*
