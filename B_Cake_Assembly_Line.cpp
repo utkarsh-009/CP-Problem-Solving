@@ -13,14 +13,29 @@ void solve()
     ll n, w, h;
     cin >> n >> w >> h;
 
+    // ai => position of cake centres, w => ai-w, ai+w
     vector<ll> a(n), b(n);
     for (int i = 0; i < n; i++)
     {
         cin >> a[i];
     }
+
+    // bi => positions of dispensers, h => bi-h, bi+h
     for (int i = 0; i < n; i++)
     {
         cin >> b[i];
+        b[i] = a[i] - b[i];
+    }
+
+    sort(b.begin(), b.end());
+
+    if (b[n - 1] - b[0] <= 2 * (w - h))
+    {
+        cout << "YES";
+    }
+    else
+    {
+        cout << "NO";
     }
 }
 
