@@ -1,43 +1,45 @@
 #include <bits/stdc++.h>
+#define ll long long
+#define mod 1000000007
 using namespace std;
+
+vector<long long> solve(vector<vector<int>> &A, vector<vector<int>> &B)
+{
+    unordered_map<long long, set<long long>> mp;
+    long long total = 0;
+
+    for (int i = 0; i < A.size(); i++)
+    {
+        long long x1 = A[i][0], x2 = A[i][1], strength = A[i][2];
+        for (int j = x1; j <= x2; j++)
+        {
+            mp[j].insert(strength);
+        }
+        total += (x2 - x1 + 1);
+    }
+
+    vector<long long> ans;
+    for (int i = 0; i < B.size(); i++)
+    {
+        long long x = B[i][0], strength = B[i][1];
+        auto it = mp[x].lower_bound(strength);
+        if (it != mp[x].begin())
+        {
+            long long cnt = distance(mp[x].begin(), it);
+            mp[x].erase(mp[x].begin(), it);
+            total -= cnt;
+        }
+        ans.push_back(total);
+    }
+
+    return ans;
+}
+
 int main()
 {
-    // Number of items
-    int n;
-    cin >> n;
-    // category of items
-    int category[n];
-    // Input of category of items
-    for (int i = 0; i < n; i++)
+    vector<vector<int>> A{{1, 3, 7}, {2, 5, 4}, {4, 8, 6}}, B{{3, 5}, {5, 8}};
+    for (ll x : solve(A, B))
     {
-        cin >> category[i];
+        cout << x << " ";
     }
-    // price of items
-    int prices[n];
-    // Input of prices of items
-    for (int i = 0; i < n; i++)
-    {
-        cin >> prices[i];
-    }
-    // store the maximum profit
-    int maximumProfit = 0;
-    // store unique category of items till current item
-    set<int> uniqueCategory;
-    // Iterate items to find the maximum profit
-    for (int i = 0; i < n; i++)
-    {
-        // add current category into unique category items
-        uniqueCategory.insert(category[i]);
-        // count the total unique category
-        int totalUniqueCategory = uniqueCategory.size();
-        // find the total current profit by multiplying
-        // price[i]*totalUniqueItems till the item
-        int currentProfit = totalUniqueCategory * prices[i];
-        cout << currentProfit << " ";
-        // add current profit into total profit
-        maximumProfit += currentProfit;
-    }
-    // print total profit
-    cout << maximumProfit << endl;
-    return 0;
 }
