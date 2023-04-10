@@ -10,7 +10,31 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-    
+    int n, k;
+    cin >> n >> k;
+
+    string s;
+    cin >> s;
+
+    vector<int> freq(26);
+    for (char c : s)
+    {
+        freq[c - 'a']++;
+    }
+
+    int pair = 0;
+    int single = 0;
+    for (int i = 0; i < 26; i++)
+    {
+        pair += (freq[i] / 2);
+        single += (freq[i] % 2);
+    }
+
+    int len = 2*(pair/k);
+    single += 2*(pair%k);
+    if(single >= k){len++;}
+
+    cout << len;
 }
 
 int main()

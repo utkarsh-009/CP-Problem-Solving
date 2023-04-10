@@ -10,7 +10,24 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-    
+    int m, n;
+    cin >> m >> n;
+
+    int x1, x2, y1, y2;
+    cin >> x1 >> y1 >> x2 >> y2;
+
+    if (x1 == x2)
+    {
+        cout << n;
+    }
+    else if (y1 == y2)
+    {
+        cout << m;
+    }
+    else
+    {
+        cout << min(x1/2+,min(m, n));
+    }
 }
 
 int main()

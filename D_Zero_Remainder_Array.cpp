@@ -10,7 +10,36 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-    
+    ll n, k;
+    cin >> n >> k;
+
+    map<ll, ll> mp;
+    for (int i = 0; i < n; i++)
+    {
+        ll a;
+        cin >> a;
+
+        if (a % k != 0)
+        {
+            ll x = ((a / k) + 1) * k - a;
+            mp[x]++;
+        }
+    }
+
+    if (mp.size() == 0)
+    {
+        cout << 0;
+        return;
+    }
+
+    ll ans = 0;
+    for (auto x : mp)
+    {
+        ll num = x.first + (x.second - 1) * k;
+        ans = max(ans, num);
+    }
+
+    cout << ans + 1;
 }
 
 int main()
