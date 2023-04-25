@@ -9,6 +9,14 @@ void solve()
     //     freopen("input.txt", "r", stdin);
     //     freopen("output.txt", "w", stdin);
     // #endif
+
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << i + 2 << " ";
+    }
 }
 
 int main()

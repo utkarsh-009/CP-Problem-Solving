@@ -10,7 +10,7 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-    
+        
 }
 
 int main()

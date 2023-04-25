@@ -12,26 +12,18 @@ void solve()
     int n, k;
     cin >> n >> k;
 
+    int x = 0;
+    int arr[26] = {0};
     string ans = "";
-    for (int i = 0; i < k; i++)
+    for (int i = 1; i <= n; i++)
     {
-        ans += ('a' + i);
+        ans.push_back(x + 'a');
+        x = (x + arr[x]++) % k;
+
+        cout << endl;
     }
 
-    if (n <= k)
-    {
-        cout << ans.substr(0, n);
-    }
-    else if (n <= 2 * k)
-    {
-        string rev = reverse(ans.begin(), ans.end());
-        ans += rev;
-        cout << ans.substr(0, n);
-    }
-    else
-    {
-        int k = 2;
-    }
+    cout << ans;
 }
 
 int main()

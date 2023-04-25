@@ -3,6 +3,61 @@
 #define mod 1000000007
 using namespace std;
 
+// 0,1,2->rest,test,gym
+int recur(vector<int> &a, int i, int last, vector<vector<int>> &dp)
+{
+    if (i >= a.size())
+        return 0;
+
+    // already pre-computed
+    if (dp[i][last] != -1)
+        return dp[i][last];
+
+    // no gym, no test
+    if (a[i] == 0)
+        return dp[i][last] = 1 + recur(a, i + 1, 0, dp);
+
+    // no gym but test
+    else if (a[i] == 1)
+    {
+        if (last == 1)
+        {
+            return dp[i][last] = 1 + recur(a, i + 1, 0, dp);
+        }
+        else
+        {
+            return dp[i][last] = recur(a, i + 1, 1, dp);
+        }
+    }
+
+    // gym but no test
+    else if (a[i] == 2)
+    {
+        if (last == 2)
+        {
+            dp[i][last] = 1 + recur(a, i + 1, 0, dp);
+        }
+        else
+        {
+            dp[i][last] = recur(a, i + 1, 2, dp);
+        }
+    }
+
+    // gym and contest
+    else
+    {
+        // test
+        int c1 = ((last == 1) ? INT_MAX : recur(a, i + 1, 1, dp));
+
+        // gym
+        int c2 = ((last == 2) ? INT_MAX : recur(a, i + 1, 2, dp));
+
+        dp[i][last] = min(c1, c2);
+
+        return dp[i][last];
+    }
+}
+
 void solve()
 {
     int n;
@@ -14,66 +69,9 @@ void solve()
         cin >> a[i];
     }
 
-    bool s = 0, c = 0;
-    int rst = 0;
-    for (int i = 0; i < n; i++)
-    {
-        // no s, no c
-        if (a[i] == 0)
-        {
-            rst++;
-            s = 0, c = 0;
-        }
-        // no s but c
-        else if (a[i] == 1)
-        {
-            if (c)
-            {
-                rst++;
-                s = 0, c = 0;
-            }
-            else
-                s = 0, c = 1;
-        }
-        // s but no c
-        else if (a[i] == 2)
-        {
-            if (s)
-            {
-                rst++;
-                s = 0, c = 0;
-            }
-            else
-                s = 1, c = 0;
-        }
-        // s and c both
-        else
-        {
-            if (s && c)
-            {
-                rst++;
-                s = 0, c = 0;
-            }
-            else if (s)
-                c = 0;
-            else if (c)
-                s = 0;
-            else
-            {
-                if (i < n - 1)
-                {
-                    if (a[i + 1] == 1)
-                        ((!c) ? s = 0, c = 1 : s = 0, c = 0, rst++);
-                    else if (a[i + 1] == 2)
-                        ((!s) ? s = 1, c = 0 : s = 0, c = 0, rst++);
-                    else if (a[i + 1] == 3)
-                        s = 1, c = 0;
-                }
-            }
-        }
-    }
+    vector<vector<int>> dp(n + 1, vector<int>(3, -1));
 
-    cout << rst;
+    cout << recur(a, 0, 0, dp);
 }
 
 int main()
