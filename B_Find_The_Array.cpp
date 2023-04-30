@@ -10,7 +10,46 @@ void solve()
     //     freopen("output.txt", "w", stdin);
     // #endif
 
-        
+    ll n;
+    cin >> n;
+
+    vector<ll> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+
+    ll oddSum = 0, evenSum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (i % 2)
+            oddSum += a[i];
+        else
+            evenSum += a[i];
+    }
+
+    ll totalSum = oddSum + evenSum;
+
+    if (oddSum <= totalSum / 2)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (i % 2)
+                cout << 1 << " ";
+            else
+                cout << a[i] << " ";
+        }
+    }
+    else
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (i % 2)
+                cout << a[i] << " ";
+            else
+                cout << 1 << " ";
+        }
+    }
 }
 
 int main()
